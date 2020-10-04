@@ -1,0 +1,3 @@
+[submodule "dmlib"]
+	path = dmlib
+	url = https://github.com/JasonYang-MSFT/azure-storage-data-movement.git

@@ -4,7 +4,7 @@
 cmake_minimum_required (VERSION 3.15)
 
 # Name of the project (will be the name of the plugin)
-project(addon VERSION 0.1)
+project(dmlib-addon VERSION 0.1)
 
 # Build a shared library named after the project from the files in `src/`
 file(GLOB SOURCE_FILES "src/*.cc" "src/*.h")
@@ -19,7 +19,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_JS_INC})
 
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project
-target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CMAKE_JS_LIB})
 
 # Include N-API wrappers
 execute_process(COMMAND node -p "require('node-addon-api').include"
@@ -29,3 +29,17 @@ execute_process(COMMAND node -p "require('node-addon-api').include"
 string(REPLACE "\n" "" NODE_ADDON_API_DIR ${NODE_ADDON_API_DIR})
 string(REPLACE "\"" "" NODE_ADDON_API_DIR ${NODE_ADDON_API_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${NODE_ADDON_API_DIR})
+
+# Include DMLib
+add_subdirectory(dmlib)
+target_include_directories(${PROJECT_NAME} PRIVATE dmlib/dmlib_core/inc)
+target_link_libraries(${PROJECT_NAME} PRIVATE dmlib)
+target_link_libraries(${PROJECT_NAME} PRIVATE delayimp)
+
+# hello.exe
+add_executable(hello src/hello.cc)
+target_include_directories(hello PRIVATE dmlib/dmlib_core/inc)
+target_link_libraries(hello PRIVATE dmlib)
+
+# call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+# cmake-js -G "Ninja" --CDCMAKE_TOOLCHAIN_FILE="s:/dev/nodeAddons/cmake-js/dmlib/vcpkg/scripts/buildsystems/vcpkg.cmake" --CDVCPKG_TARGET_TRIPLET="x64-windows-static" --CDBUILD_CURL_TRANSPORT=ON --CDBUILD_DMLIB_TESTS=OFF --CDBUILD_DMLIB_SAMPLES=OFF  --CDINSTALL_GTEST=OFF --CDBUILD_TESTING=OFF --CDBUILD_STORAGE_SAMPLES=OFF rebuild
