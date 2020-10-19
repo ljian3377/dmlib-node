@@ -8,5 +8,16 @@
     "cmake-js": "^6.1.0",
     "dotenv": "^8.2.0",
     "node-addon-api": "^3.0.2"
+  },
+  "files": [
+    "build/",
+    "src/",
+    "index.js",
+    "package.json"
+  ],
+  "cmake-js": {
+    "runtime": "electron",
+    "runtimeVersion": "10.1.3",
+    "arch": "x64"
   }
 }

@@ -4,21 +4,28 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2)
+    if (argc < 4)
     {
-        std::cerr << "Usage: " << argv[0] << " fileName" << std::endl;
+        std::cerr << "Usage: " << argv[0] << " fileName"
+                  << " accountName"
+                  << " accountKey" << std::endl;
         return 1;
     }
     else
     {
-        std::cout << argc << " " << argv[1] << std::endl;
+        std::cout << argc << std::endl;
+        for (int i = 0; i < argc; i++)
+        {
+            std::cout << argv[i] << " ";
+        }
+        std::cout << std::endl;
     }
 
     std::string fileName = argv[1];
     std::string blobName = "dmlibtestblob";
     std::string containerName = "dmlibtestcontainer";
-    std::string accountName = "";
-    std::string accountKey = "";
+    std::string accountName = argv[2];
+    std::string accountKey = argv[3];
 
     unsigned int taskId = upload_from_file_async(
         fileName.c_str(),
