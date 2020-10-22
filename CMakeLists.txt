@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 cmake_minimum_required (VERSION 3.15)
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 14)
 
 # Name of the project (will be the name of the plugin)
 project(dmlib-addon VERSION 0.1)
@@ -44,9 +44,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE dmlib/dmlib_core/inc)
 target_link_libraries(${PROJECT_NAME} PRIVATE dmlib)
 
 # hello.exe
-add_executable(hello src/hello.cc)
-target_include_directories(hello PRIVATE dmlib/dmlib_core/inc)
-target_link_libraries(hello PRIVATE dmlib)
+# add_executable(hello src/hello.cc)
+# target_include_directories(hello PRIVATE dmlib/dmlib_core/inc)
+# target_link_libraries(hello PRIVATE dmlib)
 
 # call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-# cmake-js -G "Ninja" --CDCMAKE_TOOLCHAIN_FILE="s:/dev/nodeAddons/cmake-js/dmlib/vcpkg/scripts/buildsystems/vcpkg.cmake" --CDVCPKG_TARGET_TRIPLET="x64-windows-static" --CDBUILD_CURL_TRANSPORT=ON --CDBUILD_DMLIB_TESTS=OFF --CDBUILD_DMLIB_SAMPLES=OFF  --CDINSTALL_GTEST=OFF --CDBUILD_TESTING=OFF --CDBUILD_STORAGE_SAMPLES=OFF rebuild
+# cmake-js -G "Ninja" --CDCMAKE_TOOLCHAIN_FILE="./dmlib/vcpkg/scripts/buildsystems/vcpkg.cmake" --CDVCPKG_TARGET_TRIPLET="x64-windows-static" --CDBUILD_CURL_TRANSPORT=ON --CDBUILD_DMLIB_TESTS=OFF --CDBUILD_DMLIB_SAMPLES=OFF  --CDINSTALL_GTEST=OFF --CDBUILD_TESTING=OFF --CDBUILD_STORAGE_SAMPLES=OFF rebuild
