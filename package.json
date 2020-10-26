@@ -1,6 +1,6 @@
 {
   "name": "dmlib-node",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Native module",
   "scripts": {},
   "dependencies": {
@@ -12,6 +12,7 @@
   "files": [
     "build/dmlib-addon.node",
     "build/dmlib.dll",
+    "src/",
     "*.js",
     "package.json",
     "README.md"

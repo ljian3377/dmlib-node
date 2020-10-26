@@ -6,7 +6,28 @@ After installing the dmlib-node NPM pacakge, use it just like a normal JavaScrip
 
 ```js
 const DmlibAddon = require("dmlib-node");
-DmlibAddon.uploadFile(accountName, accountKey, filePath); // synchronous upload
+
+async function upload() {
+  // Enter your storage account name and shared key
+  const accountName = process.env.ACCOUNT_NAME || "";
+  const accountSAS = process.env.ACCOUNT_SAS || "";
+  const filePath = process.env.FILE_PATH || "";
+
+  return new Promise((reslove, reject) => {
+    DmlibAddon.uploadFile(
+      filePath,
+      accountName,
+      accountSAS,
+      async (status, msg) => {
+        if (status === 0) {
+          reslove();
+        } else {
+          reject(new Error(msg));
+        }
+      }
+    );
+  });
+}
 ```
 
 ### Note

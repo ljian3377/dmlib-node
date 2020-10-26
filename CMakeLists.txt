@@ -8,7 +8,7 @@ set (CMAKE_CXX_STANDARD 14)
 project(dmlib-addon VERSION 0.1)
 
 # define NPI_VERSION
-add_definitions(-DNAPI_VERSION=3)
+add_definitions(-DNAPI_VERSION=4) # bump up to use Napi::ThreadSafeFunction
 
 include_directories(${CMAKE_JS_INC})
 
@@ -44,7 +44,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE dmlib/dmlib_core/inc)
 target_link_libraries(${PROJECT_NAME} PRIVATE dmlib)
 
 # hello.exe
-# add_executable(hello src/hello.cc)
+# add_executable(hello test/hello.cc)
 # target_include_directories(hello PRIVATE dmlib/dmlib_core/inc)
 # target_link_libraries(hello PRIVATE dmlib)
 
